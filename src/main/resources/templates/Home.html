@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BiteBoard - Where Quality Meets Flavour. Explore our authentic Indian menu.">
+    <title>BiteBoard — Home</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/Images/logo.png}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="" th:href="@{/css/Navigation.css}">
+    <link rel="stylesheet" href="" th:href="@{/css/Home.css}">
+</head>
+<body>
+    <nav th:replace="~{Navigation::navbar()}"></nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🍽️ Authentic Indian Cuisine</div>
+            <h1>Welcome to <span>BiteBoard</span></h1>
+            <p>Where Quality Meets Flavour. Explore our wide range of hand-crafted dishes made with love and the finest ingredients.</p>
+
+            <div class="hero-actions">
+                <a href="/products" class="btn-primary">
+                    <i class="fa-solid fa-utensils"></i> Explore Menu
+                </a>
+                <a href="/about" class="btn-secondary">
+                    <i class="fa-solid fa-circle-info"></i> Our Story
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Dishes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4.8★</span>
+                    <span class="stat-label">Rating</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2K+</span>
+                    <span class="stat-label">Happy Customers</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-hint">
+            <i class="fa-solid fa-chevron-down"></i>
+            <span>scroll</span>
+        </div>
+    </div>
+</body>
+</html>

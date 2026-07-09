@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiteBoard — Add User</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="" th:href="@{/css/forms.css}">
+</head>
+<body>
+    <a href="/admin/services" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+
+    <div class="addUser">
+        <div class="form-icon"><i class="fa-solid fa-user-plus"></i></div>
+        <h3>Add New <span>Customer</span></h3>
+        <p class="form-subtitle">Register a new customer account manually.</p>
+        <hr class="form-divider">
+
+        <form th:action="@{/addingUser}" method="post">
+            <div class="field-group">
+                <label for="uname">Full Name</label>
+                <input type="text" id="uname" name="uname" placeholder="Customer full name" required>
+            </div>
+            <div class="field-group">
+                <label for="uemail">Email Address</label>
+                <input type="email" id="uemail" name="uemail" placeholder="customer@email.com" required>
+            </div>
+            <div class="field-group">
+                <label for="unumber">Phone Number</label>
+                <input type="tel" id="unumber" name="unumber" placeholder="10-digit number" pattern="[0-9]{10}" required>
+            </div>
+            <div class="field-group">
+                <label for="upassword">Password</label>
+                <input type="password" id="upassword" name="upassword" placeholder="Set a password" required>
+            </div>
+            <button type="submit">
+                <i class="fa-solid fa-user-plus"></i> Add Customer
+            </button>
+        </form>
+    </div>
+</body>
+</html>

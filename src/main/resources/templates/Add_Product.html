@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiteBoard — Add Product</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="" th:href="@{/css/forms.css}">
+</head>
+<body>
+    <a href="/admin/services" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+
+    <div class="addProducts">
+        <div class="form-icon"><i class="fa-solid fa-bowl-food"></i></div>
+        <h3>Add New <span>Product</span></h3>
+        <p class="form-subtitle">Add a new dish or item to the menu.</p>
+        <hr class="form-divider">
+
+        <form th:action="@{/addingProduct}" method="post">
+            <div class="field-group">
+                <label for="pname">Product Name</label>
+                <input type="text" id="pname" name="pname" placeholder="e.g. Chicken Biryani" required>
+            </div>
+            <div class="field-group">
+                <label for="pprice">Price (₹)</label>
+                <input type="number" id="pprice" name="pprice" placeholder="e.g. 350" min="1" required>
+            </div>
+            <div class="field-group">
+                <label for="pdescription">Description</label>
+                <textarea id="pdescription" name="pdescription" rows="3" placeholder="Short description of the dish..."></textarea>
+            </div>
+            <button type="submit">
+                <i class="fa-solid fa-plus"></i> Add Product
+            </button>
+        </form>
+    </div>
+</body>
+</html>

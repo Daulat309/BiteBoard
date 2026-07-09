@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiteBoard — Error</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800;900&display=swap');
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0d0d0d;
+            color: #f0f0f0;
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 24px;
+            background-image: radial-gradient(ellipse at 50% 50%, rgba(239,68,68,0.06) 0%, transparent 65%);
+        }
+        .error-card {
+            background: #161616;
+            border: 1px solid rgba(239,68,68,0.15);
+            border-radius: 28px;
+            padding: 56px 48px;
+            max-width: 500px; width: 100%;
+            text-align: center;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+            animation: slideUp 0.5s ease both;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .error-code {
+            font-family: 'Poppins', sans-serif;
+            font-size: 6rem; font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, #ef4444, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        .error-icon {
+            font-size: 2.5rem; margin-bottom: 20px;
+            animation: shake 0.6s ease both 0.3s;
+        }
+        @keyframes shake {
+            0%,100% { transform: rotate(0); }
+            25% { transform: rotate(-8deg); }
+            75% { transform: rotate(8deg); }
+        }
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem; font-weight: 700;
+            color: #f0f0f0; margin-bottom: 10px;
+        }
+        .error-msg {
+            font-size: 0.9rem; color: rgba(255,255,255,0.45);
+            line-height: 1.7; margin-bottom: 28px;
+        }
+        .hints {
+            background: rgba(239,68,68,0.07);
+            border: 1px solid rgba(239,68,68,0.15);
+            border-radius: 14px;
+            padding: 18px 20px;
+            text-align: left;
+            margin-bottom: 28px;
+        }
+        .hints p {
+            font-size: 0.82rem; color: #fca5a5;
+            line-height: 1.8;
+        }
+        .hints p::before { content: '→ '; font-weight: 700; }
+        .actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+        a.btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 11px 22px; border-radius: 10px;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem;
+            transition: all 0.25s; font-family: 'Inter', sans-serif;
+        }
+        a.btn-primary {
+            background: linear-gradient(135deg, #e8572a, #c43e14);
+            color: white;
+            box-shadow: 0 4px 14px rgba(232,87,42,0.35);
+        }
+        a.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232,87,42,0.5); }
+        a.btn-outline {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+        a.btn-outline:hover { background: rgba(255,255,255,0.09); color: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div class="error-card">
+        <div class="error-icon">⚠️</div>
+        <div class="error-code">Oops!</div>
+        <h2>Something Went Wrong</h2>
+        <p class="error-msg">An error occurred while processing your request. This could be a validation issue or a duplicate entry.</p>
+
+        <div class="hints">
+            <p>You may be trying to submit empty or invalid data.</p>
+            <p>The email address might already be registered.</p>
+            <p>Try going back and checking your inputs.</p>
+        </div>
+
+        <div class="actions">
+            <a href="/admin/services" class="btn btn-primary">
+                <i class="fa-solid fa-gauge-high"></i> Dashboard
+            </a>
+            <a href="javascript:history.back()" class="btn btn-outline">
+                <i class="fa-solid fa-arrow-left"></i> Go Back
+            </a>
+        </div>
+    </div>
+</body>
+</html>

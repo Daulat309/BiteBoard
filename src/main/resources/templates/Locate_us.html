@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact BiteBoard — Find us, reach out, or follow us on social media.">
+    <title>BiteBoard — Contact Us</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/Images/logo.png}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="" th:href="@{/css/Navigation.css}">
+    <link rel="stylesheet" href="" th:href="@{/css/Locate_us.css}">
+</head>
+<body>
+    <nav th:replace="~{Navigation::navbar()}"></nav>
+
+    <!-- Page Hero -->
+    <div class="contact-hero">
+        <div class="contact-hero-content">
+            <div class="hero-badge">📍 We're Here For You</div>
+            <h1>Get In <span>Touch</span></h1>
+            <p>Have a question, feedback, or just want to say hello? We'd love to hear from you.</p>
+        </div>
+    </div>
+
+    <div class="contact-wrapper">
+
+        <!-- Info + Form Row -->
+        <div class="contact-grid">
+
+            <!-- Left: Contact Info -->
+            <div class="info-panel">
+                <h2 class="panel-title"><i class="fa-solid fa-address-card"></i> Contact Info</h2>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="info-text">
+                        <strong>Our Location</strong>
+                        <span>PICT, Trimurti Chowk, Pune, Maharashtra 411043</span>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="info-text">
+                        <strong>Phone</strong>
+                        <span>+91 72340 20314</span>
+                        <small>Mon – Sat, 10AM to 8PM</small>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="info-text">
+                        <strong>Email</strong>
+                        <span>daulatikhole@gmail.com</span>
+                        <small>We reply within 24 hours</small>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="social-section">
+                    <h3 class="social-title">Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/daulat_tikhole.309/" target="_blank" class="social-btn instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                            <div class="social-info">
+                                <span class="social-name">Instagram</span>
+                                <span class="social-handle">@daulat_tikhole.309</span>
+                            </div>
+                        </a>
+                        <a href="https://twitter.com/DTikhole" target="_blank" class="social-btn twitter">
+                            <i class="fa-brands fa-x-twitter"></i>
+                            <div class="social-info">
+                                <span class="social-name">Twitter / X</span>
+                                <span class="social-handle">@DTikhole</span>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/daulat-tikhole-549b50219/" target="_blank" class="social-btn linkedin">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                            <div class="social-info">
+                                <span class="social-name">LinkedIn</span>
+                                <span class="social-handle">Daulat Tikhole</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Contact Form -->
+            <div class="form-panel">
+                <h2 class="panel-title"><i class="fa-solid fa-paper-plane"></i> Send a Message</h2>
+
+                <form id="contactForm" action="" method="post" enctype="text/plain" onsubmit="handleSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cname">Your Name</label>
+                            <input type="text" id="cname" name="name" placeholder="Daulat Tikhole" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cemail">Email Address</label>
+                            <input type="email" id="cemail" name="email" placeholder="you@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="csubject">Subject</label>
+                        <input type="text" id="csubject" name="subject" placeholder="How can we help you?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cmessage">Message</label>
+                        <textarea id="cmessage" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="send-btn" id="sendBtn">
+                        <i class="fa-solid fa-paper-plane"></i> Send Message
+                    </button>
+                    <div id="successMsg" class="success-msg" style="display:none;">
+                        <i class="fa-solid fa-circle-check"></i> Message sent! We'll get back to you soon.
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="map-section">
+            <h2 class="panel-title" style="margin-bottom: 20px;"><i class="fa-solid fa-map-location-dot"></i> Find Us</h2>
+
+            <!-- Location callout badge -->
+            <div class="map-callout">
+                <span class="pulse-dot"></span>
+                <i class="fa-solid fa-location-dot" style="color:#ef4444; font-size:1.05rem;"></i>
+                <span>PICT, Trimurti Chowk, Pune — 411043</span>
+                <a href="https://maps.google.com/?q=PICT+Trimurti+Chowk+Pune+411043" target="_blank" class="get-directions">
+                    <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+                </a>
+            </div>
+
+            <div class="map-wrap map-highlight">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.8176258407173!2d73.84816631488973!3d18.457387087411085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bfe0a495b0eb%3A0x858a7a0bd01ed5d1!2sPICT%20(Pune%20Institute%20of%20Computer%20Technology)%2C%20Trimurti%20Chowk%2C%20Pune%2C%20Maharashtra%20411043!5e0!3m2!1sen!2sin!4v1713630000000!5m2!1sen!2sin"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="footer-logo">🍽️</span>
+                <span class="footer-name">BiteBoard</span>
+            </div>
+            <p class="footer-tagline">"Where Quality Meets Flavour"</p>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/daulat_tikhole.309/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://twitter.com/DTikhole" target="_blank" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/daulat-tikhole-549b50219/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <p class="footer-copy">© 2024 BiteBoard. Built by <strong>Daulat Tikhole</strong>.</p>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('sendBtn');
+            const msg = document.getElementById('successMsg');
+            const form = document.getElementById('contactForm');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+            btn.disabled = true;
+            setTimeout(() => {
+                form.reset();
+                btn.style.display = 'none';
+                msg.style.display = 'flex';
+            }, 1400);
+        }
+    </script>
+</body>
+</html>

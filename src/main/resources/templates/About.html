@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About BiteBoard — Contact us, find us on social media, or send a message.">
+    <title>BiteBoard — About Us</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/Images/logo.png}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="" th:href="@{/css/Navigation.css}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;600;700;800;900&display=swap');
+
+        @property --a {
+            syntax: '<angle>';
+            inherits: false;
+            initial-value: 0deg;
+        }
+
+        *, *::before, *::after {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #080808;
+            color: #f0f0f0;
+            min-height: 100vh;
+        }
+
+        /* ── Hero ── */
+        .about-hero {
+            position: relative;
+            padding: 80px 40px 64px;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0d0d0d 0%, #150a04 60%, #0d0d0d 100%);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 50% 80%, rgba(232,87,42,0.14) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(232,87,42,0.12);
+            border: 1px solid rgba(232,87,42,0.3);
+            color: #ff8c5a;
+            font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 2.5px; text-transform: uppercase;
+            padding: 6px 20px; border-radius: 100px;
+            margin-bottom: 22px;
+        }
+
+        .about-hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 900; line-height: 1.1;
+            color: #fff; margin-bottom: 16px;
+        }
+
+        .about-hero h1 span {
+            background: linear-gradient(135deg, #e8572a, #ff9a5c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-hero p {
+            font-size: 1.05rem; color: rgba(255,255,255,0.6);
+            max-width: 600px; margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        /* Stats row */
+        .hero-stats {
+            display: flex; gap: 48px;
+            justify-content: center; flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .stat-item { text-align: center; }
+
+        .stat-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem; font-weight: 800;
+            color: #e8572a; display: block;
+        }
+
+        .stat-label {
+            font-size: 0.78rem; color: rgba(255,255,255,0.45);
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        /* ── Main Layout ── */
+        .about-main {
+            max-width: 1180px; margin: 0 auto;
+            padding: 56px 32px;
+            display: flex; gap: 32px; flex-wrap: wrap;
+        }
+
+        /* ── Left: Info Panel ── */
+        .info-panel {
+            flex: 1; min-width: 300px;
+            display: flex; flex-direction: column; gap: 20px;
+        }
+
+        .info-card {
+            background: #141414;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 20px; padding: 28px;
+        }
+
+        .card-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 20px;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .card-title::before {
+            content: '';
+            display: block;
+            width: 20px; height: 2px;
+            background: #e8572a;
+            border-radius: 2px;
+        }
+
+        /* Contact info rows */
+        .contact-row {
+            display: flex; align-items: flex-start;
+            gap: 16px; margin-bottom: 20px;
+        }
+
+        .contact-row:last-child { margin-bottom: 0; }
+
+        .c-icon {
+            width: 46px; height: 46px; flex-shrink: 0;
+            background: rgba(232,87,42,0.12);
+            border: 1px solid rgba(232,87,42,0.2);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: #e8572a; font-size: 1rem;
+            transition: all 0.25s;
+        }
+
+        .contact-row:hover .c-icon {
+            background: rgba(232,87,42,0.22);
+            transform: scale(1.05);
+        }
+
+        .c-text strong {
+            display: block;
+            font-size: 0.76rem; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 4px;
+        }
+
+        .c-text span {
+            font-size: 0.95rem; color: #f0f0f0;
+            font-weight: 500; line-height: 1.5;
+        }
+
+        .c-text small {
+            display: block;
+            font-size: 0.78rem; color: rgba(255,255,255,0.35);
+            margin-top: 2px;
+        }
+
+        /* ── Social Links ── */
+        .social-grid {
+            display: flex; flex-direction: column; gap: 10px;
+        }
+
+        .soc-btn {
+            display: flex; align-items: center; gap: 14px;
+            padding: 14px 16px;
+            border-radius: 14px; border: 1px solid transparent;
+            text-decoration: none;
+            transition: all 0.25s ease; cursor: pointer;
+        }
+
+        .soc-icon {
+            width: 42px; height: 42px; flex-shrink: 0;
+            border-radius: 11px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .soc-info { flex: 1; }
+        .soc-name {
+            font-size: 0.9rem; font-weight: 600;
+            color: #f0f0f0; display: block; line-height: 1;
+        }
+
+        .soc-handle {
+            font-size: 0.78rem; color: rgba(255,255,255,0.4);
+        }
+
+        .soc-arrow {
+            color: rgba(255,255,255,0.2); font-size: 0.8rem;
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        .soc-btn:hover .soc-arrow {
+            transform: translateX(3px);
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Instagram */
+        .soc-btn.ig {
+            background: rgba(225,48,108,0.07);
+            border-color: rgba(225,48,108,0.14);
+        }
+        .soc-btn.ig .soc-icon { background: rgba(225,48,108,0.15); color: #e1306c; }
+        .soc-btn.ig:hover { background: rgba(225,48,108,0.14); border-color: rgba(225,48,108,0.35); transform: translateX(4px); }
+
+        /* Twitter */
+        .soc-btn.tw {
+            background: rgba(29,155,240,0.07);
+            border-color: rgba(29,155,240,0.14);
+        }
+        .soc-btn.tw .soc-icon { background: rgba(29,155,240,0.15); color: #1d9bf0; }
+        .soc-btn.tw:hover { background: rgba(29,155,240,0.14); border-color: rgba(29,155,240,0.35); transform: translateX(4px); }
+
+        /* LinkedIn */
+        .soc-btn.li {
+            background: rgba(10,102,194,0.07);
+            border-color: rgba(10,102,194,0.14);
+        }
+        .soc-btn.li .soc-icon { background: rgba(10,102,194,0.15); color: #0a66c2; }
+        .soc-btn.li:hover { background: rgba(10,102,194,0.14); border-color: rgba(10,102,194,0.35); transform: translateX(4px); }
+
+        /* ── Right: Contact Form (Animated border) ── */
+        .form-panel {
+            flex: 1.2; min-width: 320px;
+            position: relative;
+            background: repeating-conic-gradient(from var(--a), #e8572a 0%, #e8572a 10%, transparent 10%, transparent 50%);
+            animation: spinBorder 6s linear infinite;
+            border-radius: 20px;
+            padding: 3px;
+        }
+
+        .form-panel::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: repeating-conic-gradient(from var(--a), #ff9a5c 0%, #ff9a5c 10%, transparent 10%, transparent 50%);
+            animation: spinBorder 20s linear infinite;
+            animation-delay: -1.5s;
+            border-radius: 20px;
+        }
+
+        @keyframes spinBorder {
+            0%   { --a: 0deg; }
+            100% { --a: 3600deg; }
+        }
+
+        .form-inner {
+            position: relative; z-index: 5;
+            background: #141414;
+            border-radius: 18px;
+            padding: 36px 36px;
+        }
+
+        .form-inner h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem; font-weight: 700;
+            color: #fff; margin-bottom: 6px;
+        }
+
+        .form-inner h2 span { color: #e8572a; }
+
+        .form-inner .form-sub {
+            font-size: 0.85rem; color: rgba(255,255,255,0.4);
+            margin-bottom: 28px;
+        }
+
+        /* Floating label inputs */
+        .input-wrap {
+            position: relative; margin-bottom: 28px;
+        }
+
+        .input-wrap input,
+        .input-wrap textarea {
+            width: 100%;
+            padding: 12px 0 8px;
+            background: transparent;
+            border: none; border-bottom: 2px solid rgba(255,255,255,0.12);
+            color: #f0f0f0;
+            font-size: 1rem; font-family: 'Inter', sans-serif;
+            outline: none; resize: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-wrap input:focus,
+        .input-wrap textarea:focus {
+            border-bottom-color: #e8572a;
+        }
+
+        .input-wrap label {
+            position: absolute; left: 0; top: 14px;
+            font-size: 0.95rem; color: rgba(255,255,255,0.35);
+            pointer-events: none;
+            transition: 0.35s ease;
+        }
+
+        .input-wrap input:focus ~ label,
+        .input-wrap input:not(:placeholder-shown) ~ label,
+        .input-wrap textarea:focus ~ label,
+        .input-wrap textarea:not(:placeholder-shown) ~ label {
+            top: -8px; font-size: 0.75rem;
+            color: #e8572a; font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .input-wrap input::placeholder,
+        .input-wrap textarea::placeholder { color: transparent; }
+
+        .send-btn {
+            width: 100%; padding: 14px;
+            background: linear-gradient(135deg, #e8572a, #c43e14);
+            color: #fff; border: none; border-radius: 10px;
+            font-size: 0.97rem; font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer; letter-spacing: 0.3px;
+            display: flex; align-items: center; justify-content: center;
+            gap: 9px;
+            box-shadow: 0 4px 20px rgba(232,87,42,0.4);
+            transition: all 0.25s ease;
+        }
+
+        .send-btn:hover {
+            box-shadow: 0 6px 28px rgba(232,87,42,0.6);
+            transform: translateY(-2px);
+        }
+
+        .success-msg {
+            display: none;
+            align-items: center; gap: 10px;
+            padding: 13px 16px; margin-top: 14px;
+            background: rgba(34,197,94,0.1);
+            border: 1px solid rgba(34,197,94,0.25);
+            border-radius: 10px; color: #22c55e;
+            font-weight: 600; font-size: 0.9rem;
+            animation: fadeUp 0.5s ease;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Footer ── */
+        .site-footer {
+            background: #0d0d0d;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 40px 32px;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 600px; margin: 0 auto;
+            display: flex; flex-direction: column;
+            align-items: center; gap: 14px;
+        }
+
+        .footer-brand {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem; font-weight: 800;
+            color: #fff;
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .footer-brand span { color: #e8572a; }
+
+        .footer-tagline {
+            font-size: 0.85rem; font-style: italic;
+            color: rgba(255,255,255,0.35);
+        }
+
+        .footer-icons {
+            display: flex; gap: 10px;
+        }
+
+        .footer-icons a {
+            width: 38px; height: 38px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.6); font-size: 0.9rem;
+            text-decoration: none; transition: all 0.22s;
+        }
+
+        .footer-icons a:hover { transform: translateY(-3px); }
+        .footer-icons a.ig:hover { background: rgba(225,48,108,0.2); color: #e1306c; border-color: rgba(225,48,108,0.4); }
+        .footer-icons a.tw:hover { background: rgba(29,155,240,0.2); color: #1d9bf0; border-color: rgba(29,155,240,0.4); }
+        .footer-icons a.li:hover { background: rgba(10,102,194,0.2); color: #0a66c2; border-color: rgba(10,102,194,0.4); }
+
+        .footer-copy {
+            font-size: 0.8rem; color: rgba(255,255,255,0.3);
+        }
+
+        .footer-copy strong { color: #e8572a; }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .about-main { flex-direction: column; }
+            .form-panel { min-width: 100%; }
+        }
+
+        @media (max-width: 600px) {
+            .about-hero { padding: 52px 20px 44px; }
+            .about-main { padding: 32px 16px; }
+            .hero-stats { gap: 28px; }
+            .form-inner { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav th:replace="~{Navigation::navbar()}"></nav>
+
+    <!-- Hero -->
+    <div class="about-hero">
+        <div class="hero-badge">🍽️ Powered by Passion</div>
+        <h1>About <span>BiteBoard</span></h1>
+        <p>BiteBoard is a full-stack food business management platform that streamlines customer data, inventory, and order operations — built for speed, clarity, and scale.</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Dishes</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">3</span>
+                <span class="stat-label">Core Modules</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Open Source</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">4.8★</span>
+                <span class="stat-label">Rating</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-main">
+
+        <!-- Left Panel -->
+        <div class="info-panel">
+
+            <!-- Contact Info -->
+            <div class="info-card">
+                <div class="card-title">Contact Information</div>
+
+                <div class="contact-row">
+                    <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="c-text">
+                        <strong>Address</strong>
+                        <span>PICT, Pune — 411043</span>
+                        <small>Maharashtra, India</small>
+                    </div>
+                </div>
+
+                <div class="contact-row">
+                    <div class="c-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="c-text">
+                        <strong>Phone</strong>
+                        <span>+91 80103 84306</span>
+                        <small>Mon – Sat, 10AM to 8PM</small>
+                    </div>
+                </div>
+
+                <div class="contact-row">
+                    <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="c-text">
+                        <strong>Email</strong>
+                        <span>tikholedaulat@gmail.com</span>
+                        <small>Reply within 24 hrs</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="info-card">
+                <div class="card-title">Connect With Me</div>
+                <div class="social-grid">
+                    <a href="https://www.instagram.com/daulat_tikhole.309/" target="_blank" class="soc-btn ig">
+                        <div class="soc-icon"><i class="fa-brands fa-instagram"></i></div>
+                        <div class="soc-info">
+                            <span class="soc-name">Instagram</span>
+                            <span class="soc-handle">@daulat_tikhole.309</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-right soc-arrow"></i>
+                    </a>
+                    <a href="https://twitter.com/DTikhole" target="_blank" class="soc-btn tw">
+                        <div class="soc-icon"><i class="fa-brands fa-x-twitter"></i></div>
+                        <div class="soc-info">
+                            <span class="soc-name">Twitter / X</span>
+                            <span class="soc-handle">@DTikhole</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-right soc-arrow"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/daulat-tikhole-549b50219/" target="_blank" class="soc-btn li">
+                        <div class="soc-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                        <div class="soc-info">
+                            <span class="soc-name">LinkedIn</span>
+                            <span class="soc-handle">Daulat Tikhole</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-right soc-arrow"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Animated Form -->
+        <div class="form-panel">
+            <div class="form-inner">
+                <h2>Send a <span>Message</span></h2>
+                <p class="form-sub">Got a question or feedback? I read every message.</p>
+
+                <form id="aboutForm" onsubmit="handleSend(event)">
+                    <div class="input-wrap">
+                        <input type="text" id="fname" placeholder="Full Name" required>
+                        <label for="fname">Full Name</label>
+                    </div>
+                    <div class="input-wrap">
+                        <input type="email" id="femail" placeholder="Email Address" required>
+                        <label for="femail">Email Address</label>
+                    </div>
+                    <div class="input-wrap">
+                        <input type="text" id="fsubject" placeholder="Subject" required>
+                        <label for="fsubject">Subject</label>
+                    </div>
+                    <div class="input-wrap">
+                        <textarea id="fmsg" rows="5" placeholder="Your message..." required></textarea>
+                        <label for="fmsg">Your Message</label>
+                    </div>
+
+                    <button type="submit" class="send-btn" id="sendBtn">
+                        <i class="fa-solid fa-paper-plane"></i> Send Message
+                    </button>
+                    <div class="success-msg" id="successMsg">
+                        <i class="fa-solid fa-circle-check"></i> Message sent! I'll get back to you soon.
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">🍽️ <span>Bite</span>Board</div>
+            <p class="footer-tagline">"Where Quality Meets Flavour"</p>
+            <div class="footer-icons">
+                <a href="https://www.instagram.com/daulat_tikhole.309/" target="_blank" class="ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://twitter.com/DTikhole" target="_blank" class="tw" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/daulat-tikhole-549b50219/" target="_blank" class="li" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <p class="footer-copy">© 2024 BiteBoard. Crafted with ❤️ by <strong>Daulat Tikhole</strong></p>
+        </div>
+    </footer>
+
+    <script>
+        function handleSend(e) {
+            e.preventDefault();
+            const btn = document.getElementById('sendBtn');
+            const msg = document.getElementById('successMsg');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+            btn.disabled = true;
+            setTimeout(() => {
+                document.getElementById('aboutForm').reset();
+                btn.style.display = 'none';
+                msg.style.display = 'flex';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

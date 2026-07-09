@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiteBoard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="" th:href="@{/css/Navigation.css}">
+</head>
+<body>
+    <nav th:fragment="navbar()">
+        <img th:src="@{/Images/logo.png}" alt="BiteBoard Logo" class="logo">
+        <span class="brand-name">BiteBoard</span>
+        <button class="hamburger" id="menuToggle" onclick="toggleMenu()" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul id="navLinks">
+            <li><a href="/home"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="/products"><i class="fa-solid fa-utensils"></i> Menu</a></li>
+            <li><a href="/location"><i class="fa-solid fa-location-dot"></i> Find Us</a></li>
+            <li><a href="/about"><i class="fa-solid fa-circle-info"></i> About</a></li>
+            <li><a href="/login" class="login-link"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a></li>
+        </ul>
+        <script>
+            function toggleMenu() {
+                document.getElementById('navLinks').classList.toggle('open');
+                document.getElementById('menuToggle').classList.toggle('open');
+            }
+        </script>
+    </nav>
+</body>
+</html>

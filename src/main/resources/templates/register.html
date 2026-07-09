@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiteBoard — Register</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/Images/logo.png}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="" th:href="@{/css/Navigation.css}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700&display=swap');
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0d0d0d;
+            background-image: radial-gradient(ellipse at 30% 50%, rgba(232,87,42,0.1) 0%, transparent 60%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .register-wrap {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 16px;
+        }
+        .register-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 24px;
+            padding: 44px 40px;
+            width: 100%;
+            max-width: 480px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+            position: relative;
+        }
+        .register-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #e8572a, #ff9a5c);
+            border-radius: 24px 24px 0 0;
+        }
+        .card-icon {
+            width: 54px; height: 54px;
+            background: rgba(232,87,42,0.15);
+            color: #e8572a;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 18px;
+        }
+        .card-label {
+            font-size: 0.72rem; font-weight: 600; letter-spacing: 2px;
+            text-transform: uppercase; color: rgba(255,255,255,0.45);
+            margin-bottom: 6px;
+        }
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem; font-weight: 700;
+            color: #f0f0f0; margin-bottom: 28px;
+        }
+        h2 span { color: #e8572a; }
+        .field-group { margin-bottom: 16px; }
+        label {
+            display: block; font-size: 0.82rem; font-weight: 600;
+            color: rgba(255,255,255,0.55); margin-bottom: 7px;
+        }
+        input {
+            display: block; width: 100%;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px; padding: 12px 16px;
+            color: #f0f0f0; font-size: 0.95rem;
+            font-family: 'Inter', sans-serif; outline: none;
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+        }
+        input:focus {
+            border-color: #e8572a;
+            background: rgba(232,87,42,0.07);
+            box-shadow: 0 0 0 3px rgba(232,87,42,0.15);
+        }
+        input::placeholder { color: rgba(255,255,255,0.25); }
+        button[type="submit"] {
+            display: block; width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #e8572a, #c43e14);
+            color: white; border: none; border-radius: 10px;
+            font-size: 0.95rem; font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer; margin-top: 24px;
+            box-shadow: 0 4px 16px rgba(232,87,42,0.35);
+            transition: all 0.25s;
+        }
+        button[type="submit"]:hover {
+            box-shadow: 0 6px 24px rgba(232,87,42,0.5);
+            transform: translateY(-2px);
+        }
+        .login-link {
+            text-align: center; margin-top: 20px;
+            font-size: 0.85rem; color: rgba(255,255,255,0.45);
+        }
+        .login-link a {
+            color: #e8572a; font-weight: 600; text-decoration: none;
+        }
+        .login-link a:hover { color: #ff9a5c; }
+        .error-text { color: #ff6b6b; font-size: 0.82rem; margin-top: 12px; text-align: center; }
+    </style>
+</head>
+<body>
+    <nav th:replace="~{Navigation::navbar()}"></nav>
+
+    <div class="register-wrap">
+        <div class="register-card">
+            <div class="card-icon"><i class="fa-solid fa-user-plus"></i></div>
+            <p class="card-label">New Account</p>
+            <h2>Create <span>Account</span></h2>
+
+            <form th:action="@{/register}" method="get" th:object="${userRegistration}">
+                <div class="field-group">
+                    <label for="u_id">User ID</label>
+                    <input type="text" id="u_id" name="u_id" th:field="*{u_id}" placeholder="Enter a unique ID" required>
+                </div>
+                <div class="field-group">
+                    <label for="uemail">Email Address</label>
+                    <input type="email" id="uemail" name="uemail" th:field="*{uemail}" placeholder="you@email.com" required>
+                </div>
+                <div class="field-group">
+                    <label for="uname">Full Name</label>
+                    <input type="text" id="uname" name="uname" th:field="*{uname}" placeholder="Your full name" required>
+                </div>
+                <div class="field-group">
+                    <label for="unumber">Phone Number</label>
+                    <input type="text" id="unumber" name="unumber" th:field="*{unumber}" placeholder="10-digit phone number" required>
+                </div>
+                <div class="field-group">
+                    <label for="upassword">Password</label>
+                    <input type="password" id="upassword" name="upassword" th:field="*{upassword}" placeholder="Min 4 characters" required>
+                </div>
+                <button type="submit"><i class="fa-solid fa-user-plus"></i>&nbsp; Create Account</button>
+            </form>
+
+            <p th:text="${error}" class="error-text"></p>
+            <div class="login-link">Already have an account? <a th:href="@{/login}">Login Here</a></div>
+        </div>
+    </div>
+</body>
+</html>

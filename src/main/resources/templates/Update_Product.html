@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiteBoard — Update Product</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="" th:href="@{/css/forms.css}">
+</head>
+<body>
+    <a href="/admin/services" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+
+    <div class="updateProduct">
+        <div class="form-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+        <h3>Update <span>Product</span></h3>
+        <p class="form-subtitle">Edit existing menu item details.</p>
+        <hr class="form-divider">
+
+        <form th:action="@{'/updatingProduct/'+${product.pid}}" th:object="${product}">
+            <input type="hidden" name="pid" th:value="${product.pid}">
+            <div class="field-group">
+                <label>Product Name</label>
+                <input type="text" name="pname" th:value="${product.pname}" placeholder="Product name" required>
+            </div>
+            <div class="field-group">
+                <label>Price (₹)</label>
+                <input type="number" name="pprice" th:value="${product.pprice}" placeholder="Price" min="1" required>
+            </div>
+            <div class="field-group">
+                <label>Description</label>
+                <textarea name="pdescription" rows="3" th:text="${product.pdescription}" placeholder="Description..."></textarea>
+            </div>
+            <button type="submit">
+                <i class="fa-solid fa-floppy-disk"></i> Save Changes
+            </button>
+        </form>
+    </div>
+</body>
+</html>

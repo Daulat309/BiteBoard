@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiteBoard — Update User</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="" th:href="@{/css/forms.css}">
+</head>
+<body>
+    <a href="/admin/services" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+
+    <div class="updateUser">
+        <div class="form-icon"><i class="fa-solid fa-user-pen"></i></div>
+        <h3>Update <span>Customer</span></h3>
+        <p class="form-subtitle">Edit existing customer account details.</p>
+        <hr class="form-divider">
+
+        <form th:action="@{'/updatingUser/'+${user.u_id}}" th:object="${user}">
+            <input type="hidden" name="u_id" th:value="${user.u_id}">
+            <div class="field-group">
+                <label>Full Name</label>
+                <input type="text" name="uname" th:value="${user.uname}" placeholder="Full name" required>
+            </div>
+            <div class="field-group">
+                <label>Email Address</label>
+                <input type="email" name="uemail" th:value="${user.uemail}" placeholder="Email" required>
+            </div>
+            <div class="field-group">
+                <label>Phone Number</label>
+                <input type="tel" name="unumber" th:value="${user.unumber}" pattern="[0-9]{10}" placeholder="10-digit number">
+            </div>
+            <button type="submit">
+                <i class="fa-solid fa-floppy-disk"></i> Save Changes
+            </button>
+        </form>
+    </div>
+</body>
+</html>
