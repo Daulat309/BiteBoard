@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: biteboard
+    env: docker
+    plan: free # Change to starter or higher if you need more resources
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: DB_URL
+        # Replace with your production MySQL database URL
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
